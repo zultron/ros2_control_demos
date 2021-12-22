@@ -50,6 +50,13 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
+            "hardware_plugin",
+            default_value="ros2_control_demo_example_4/RRBotSystemWithSensorHardware",
+            description="Use alternate hardware system interface plugin.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "slowdown",
             default_value="50.0",
             description="Slowdown factor of the RRbot.",
@@ -60,6 +67,7 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     use_mock_hardware = LaunchConfiguration("use_mock_hardware")
     mock_sensor_commands = LaunchConfiguration("mock_sensor_commands")
+    hardware_plugin = LaunchConfiguration("hardware_plugin")
     slowdown = LaunchConfiguration("slowdown")
 
     base_launch = IncludeLaunchDescription(
@@ -70,6 +78,7 @@ def generate_launch_description():
             "prefix": prefix,
             "use_mock_hardware": use_mock_hardware,
             "mock_sensor_commands": mock_sensor_commands,
+            "hardware_plugin": hardware_plugin,
             "slowdown": slowdown,
         }.items(),
     )

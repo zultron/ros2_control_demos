@@ -48,6 +48,20 @@ def generate_launch_description():
             Used only if 'use_mock_hardware' parameter is true.",
         )
     )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "hardware_position_plugin",
+            default_value="ros2_control_demo_example_5/RRBotSystemPositionOnlyHardware",
+            description="Use alternate hardware position system interface plugin.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "hardware_sensor_plugin",
+            default_value="ros2_control_demo_example_5/ExternalRRBotForceTorqueSensorHardware",
+            description="Use alternate hardware sensor system interface plugin.",
+        )
+    )
 
     declared_arguments.append(
         DeclareLaunchArgument(
@@ -60,7 +74,8 @@ def generate_launch_description():
     # Initialize Arguments
     prefix = LaunchConfiguration("prefix")
     use_mock_hardware = LaunchConfiguration("use_mock_hardware")
-    mock_sensor_commands = LaunchConfiguration("mock_sensor_commands")
+    hardware_position_plugin = LaunchConfiguration("hardware_position_plugin")
+    hardware_sensor_plugin = LaunchConfiguration("hardware_sensor_plugin")
     slowdown = LaunchConfiguration("slowdown")
 
     base_launch = IncludeLaunchDescription(
@@ -71,6 +86,8 @@ def generate_launch_description():
             "prefix": prefix,
             "use_mock_hardware": use_mock_hardware,
             "mock_sensor_commands": mock_sensor_commands,
+            "hardware_position_plugin": hardware_position_plugin,
+            "hardware_sensor_plugin": hardware_sensor_plugin,
             "slowdown": slowdown,
         }.items(),
     )
