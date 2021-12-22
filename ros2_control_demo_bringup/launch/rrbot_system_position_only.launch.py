@@ -45,6 +45,14 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument(
+            "hardware_plugin",
+            default_value="ros2_control_demo_hardware/RRBotSystemPositionOnlyHardware",
+            description="Use alternate hardware system interface plugin.",
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "use_fake_hardware",
             default_value="false",
             description="Start robot with fake hardware mirroring command to its states.",
@@ -80,6 +88,8 @@ def generate_launch_description():
             ),
             " prefix:=",
             LaunchConfiguration("prefix"),
+            " hardware_plugin:=",
+            LaunchConfiguration("hardware_plugin"),
             " use_fake_hardware:=",
             LaunchConfiguration("use_fake_hardware"),
             " fake_sensor_commands:=",
