@@ -32,6 +32,13 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
+            "hardware_plugin",
+            default_value="ros2_control_demo_hardware/RRBotSystemMultiInterfaceHardware",
+            description="Use alternate hardware system interface plugin.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "slowdown", default_value="50.0", description="Slowdown factor of the RRbot."
         )
     )
@@ -45,6 +52,7 @@ def generate_launch_description():
 
     # Initialize Arguments
     prefix = LaunchConfiguration("prefix")
+    hardware_plugin = LaunchConfiguration("hardware_plugin")
     slowdown = LaunchConfiguration("slowdown")
     robot_controller = LaunchConfiguration("robot_controller")
 
@@ -54,6 +62,7 @@ def generate_launch_description():
             "controllers_file": "rrbot_multi_interface_forward_controllers.yaml",
             "description_file": "rrbot_system_multi_interface.urdf.xacro",
             "prefix": prefix,
+            "hardware_plugin": hardware_plugin,
             "use_fake_hardware": "false",
             "fake_sensor_commands": "false",
             "slowdown": slowdown,
