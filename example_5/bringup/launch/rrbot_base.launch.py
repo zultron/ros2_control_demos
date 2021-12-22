@@ -80,6 +80,13 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
+            "hardware_plugin",
+            default_value="ros2_control_demo_example_5/RRBotSystemPositionOnlyHardware",
+            description="Use alternate hardware system interface plugin.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "slowdown", default_value="3.0", description="Slowdown factor of the RRbot."
         )
     )
@@ -106,6 +113,7 @@ def generate_launch_description():
     prefix = LaunchConfiguration("prefix")
     use_mock_hardware = LaunchConfiguration("use_mock_hardware")
     mock_sensor_commands = LaunchConfiguration("mock_sensor_commands")
+    hardware_plugin = LaunchConfiguration("hardware_plugin")
     slowdown = LaunchConfiguration("slowdown")
     robot_controller = LaunchConfiguration("robot_controller")
     start_rviz = LaunchConfiguration("start_rviz")
@@ -127,6 +135,9 @@ def generate_launch_description():
             " ",
             "mock_sensor_commands:=",
             mock_sensor_commands,
+            " ",
+            "hardware_plugin:=",
+            hardware_plugin,
             " ",
             "slowdown:=",
             slowdown,

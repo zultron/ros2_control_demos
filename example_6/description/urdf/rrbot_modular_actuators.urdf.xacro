@@ -9,6 +9,8 @@ https://github.com/ros-simulation/gazebo_ros_demos/blob/kinetic-devel/rrbot_desc
   <!-- Enable setting arguments from the launch file -->
   <xacro:arg name="prefix" default="" />
   <xacro:arg name="slowdown" default="2.0" />
+  <xacro:arg name="hardware_plugin"
+             default="ros2_control_demo_example_6/RRBotModularJoint" />
 
   <!-- Import RRBot macro -->
   <xacro:include filename="$(find ros2_control_demo_example_6)/urdf/rrbot_description.urdf.xacro" />
@@ -28,6 +30,7 @@ https://github.com/ros-simulation/gazebo_ros_demos/blob/kinetic-devel/rrbot_desc
 
   <xacro:rrbot_modular_actuators
     name="RRBotModularJoint" prefix="$(arg prefix)"
+    hardware_plugin="$(arg hardware_plugin)"
     slowdown="$(arg slowdown)" />
 
 </robot>

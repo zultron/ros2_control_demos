@@ -8,6 +8,8 @@ https://github.com/ros-simulation/gazebo_ros_demos/blob/kinetic-devel/rrbot_desc
 
   <!-- Enable setting arguments from the launch file -->
   <xacro:arg name="prefix" default="" />
+  <xacro:arg name="hardware_plugin"
+             default="ros2_control_demo_example_8/RRBotTransmissionsSystemPositionOnlyHardware" />
   <xacro:arg name="slowdown" default="100.0" />
 
   <!-- Import RRBot macro -->
@@ -28,6 +30,7 @@ https://github.com/ros-simulation/gazebo_ros_demos/blob/kinetic-devel/rrbot_desc
 
   <xacro:rrbot_transmissions_system_position_only
     name="RRBotTransmissionsSystemPositionOnly" prefix="$(arg prefix)"
+    hardware_plugin="$(arg hardware_plugin)"
     slowdown="$(arg slowdown)" />
 
 </robot>

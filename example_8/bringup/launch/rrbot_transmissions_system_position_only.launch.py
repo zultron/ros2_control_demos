@@ -32,6 +32,13 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
+            "hardware_plugin",
+            default_value="ros2_control_demo_example_8/RRBotTransmissionsSystemPositionOnlyHardware",
+            description="Use alternate hardware system interface plugin.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "slowdown", default_value="50.0", description="Slowdown factor of the RRbot."
         )
     )
@@ -52,6 +59,7 @@ def generate_launch_description():
 
     # Initialize Arguments
     prefix = LaunchConfiguration("prefix")
+    hardware_plugin = LaunchConfiguration("hardware_plugin")
     slowdown = LaunchConfiguration("slowdown")
     robot_controller = LaunchConfiguration("robot_controller")
     start_rviz = LaunchConfiguration("start_rviz")
@@ -61,6 +69,7 @@ def generate_launch_description():
         launch_arguments={
             "description_file": "rrbot_transmissions_system_position_only.urdf.xacro",
             "prefix": prefix,
+            "hardware_plugin": hardware_plugin,
             "slowdown": slowdown,
             "robot_controller": robot_controller,
             "start_rviz": start_rviz,

@@ -32,6 +32,13 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
+            "hardware_plugin",
+            default_value="ros2_control_demo_example_6/RRBotModularJoint",
+            description="Use alternate hardware system interface plugin.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "slowdown", default_value="3.0", description="Slowdown factor of the RRbot."
         )
     )
@@ -45,6 +52,7 @@ def generate_launch_description():
 
     # Initialize Arguments
     prefix = LaunchConfiguration("prefix")
+    hardware_plugin = LaunchConfiguration("hardware_plugin")
     slowdown = LaunchConfiguration("slowdown")
     robot_controller = LaunchConfiguration("robot_controller")
 
@@ -55,6 +63,7 @@ def generate_launch_description():
             "description_file": "rrbot_modular_actuators.urdf.xacro",
             "prefix": prefix,
             "use_mock_hardware": "false",
+            "hardware_plugin": hardware_plugin,
             "slowdown": slowdown,
             "robot_controller": robot_controller,
         }.items(),
